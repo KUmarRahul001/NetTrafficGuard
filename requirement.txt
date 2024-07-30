@@ -1,0 +1,6 @@
+flask==2.3.3
+flask-pymongo==2.3.0
+pymongo==4.4.0
+scikit-learn==1.5.1
+numpy==1.24.0
+pandas==2.0.0
