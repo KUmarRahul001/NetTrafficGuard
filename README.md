@@ -65,7 +65,7 @@ Email_Monitoring_System/
 ### **1. Clone the Repository**
 
 ```bash
-git clone https://github.com/yourusername/Email_Monitoring_System.git
+git clone https://github.com/KUmarRahul001/Email_Monitoring_System.git
 cd Email_Monitoring_System
 ```
 
