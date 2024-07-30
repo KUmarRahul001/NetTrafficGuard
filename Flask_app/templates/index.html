@@ -3,40 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediction Form</title>
+    <title>NetTrafficGuard - Network Traffic Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Get Prediction</h1>
-    <form id="prediction-form">
-        <label for="feature1">Feature 1:</label>
-        <input type="text" id="feature1" name="feature1" required><br>
-        <label for="feature2">Feature 2:</label>
-        <input type="text" id="feature2" name="feature2" required><br>
-        <input type="submit" value="Submit">
-    </form>
+    <header>
+        <div class="container">
+            <h1>NetTrafficGuard</h1>
+            <p>Network Traffic Analysis and Security Enhancement</p>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h2>Get Prediction</h2>
+            <form action="{{ url_for('main.index') }}" method="POST">
+                <div class="form-group">
+                    <label for="feature1">Number of Packets Sent During a Time Window:</label>
+                    <input type="text" id="feature1" name="feature1" placeholder="Enter number of packets" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="feature2">Duration of the Connection (in seconds):</label>
+                    <input type="text" id="feature2" name="feature2" placeholder="Enter duration in seconds" required>
+                </div>
 
-    <div id="result"></div>
-
-    <script>
-        document.getElementById('prediction-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const data = {};
-            formData.forEach((value, key) => data[key] = value);
-
-            fetch('/predict', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                document.getElementById('result').innerText = 'Prediction: ' + result.prediction;
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    </script>
+                <div class="form-group">
+                    <label for="feature3">Feature 3 (Description):</label>
+                    <input type="text" id="feature3" name="feature3" placeholder="Enter feature 3 value" required>
+                </div>
+                
+                <button type="submit" class="btn">Submit</button>
+                {% if error %}
+                <p class="error">{{ error }}</p>
+                {% endif %}
+            </form>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 NetTrafficGuard. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
